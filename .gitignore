@@ -1,0 +1,22 @@
+db.sqlite3
+sqlite/leaders.sqlite
+/sqlite/leaders.sqlite
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+/sqlite
+/bin
+/data
+/env
+/lib
+/include
+/lib64
+/local
+/log
+/s3
+/results
+
+config.py

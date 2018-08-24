@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+{% block body %}
+	<script>
+	function outputUpdate(value) {
+		document.querySelector('#minAOutput').value = value;
+	}
+	</script>
+
+
+	<form action="/crunchbase/update_crunchbase_file" method="post">
+	    <input type="submit" value="Update Crunchbase Datafile" />
+	</form>
+	<br><br>
+	<form onsubmit="return confirm('Do you really want the current Crunchbase dataset?  This cannot be undone!');" 
+	action="/crunchbase/delete_crunchbase_file" method="post">
+	    <input type="submit" value="Delete Crunchbase Datafile" />
+	</form>
+	<br><br>
+
+	<h3>Process and Export Matches</h3>
+
+	<form action="/crunchbase/process_export_matches" method="post">
+		Email address: <input type="text" name="email"><br><br>
+		
+		Minimum number of A's followed: <input type="range" name="minA" min="0" max="10" step="1" value=0 oninput="outputUpdate(value)">
+			<output for="minA" id="minAOutput">0</output><br>
+		<br>
+		<input type="radio" name="type" value="founders" checked>Founders, CEO, President, Partner<br>
+		<input type="radio" name="type" value="cxo">CXO, VPs<br>
+		<input type="radio" name="type" value="everyone-else">Everyone else<br>
+		<input type="radio" name="type" value="all">All entries (no filter)<br>
+		<input type="radio" name="type" value="other">Custom - enter titles separated by commas: <input type="text" name="other-filter"><br>
+		<br><br>
+		<input type="radio" name="region" value="USA" checked>USA only<br>
+		<input type="radio" name="region" value="other-regions">Non-USA<br>
+		<input type="radio" name="region" value="all-regions">All<br>
+		
+	    <input type="submit" value="Submit" />
+	</form>
+{% endblock %}

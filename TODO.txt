@@ -1,0 +1,9 @@
+========================================================================================
+http://ec2-54-244-147-34.us-west-2.compute.amazonaws.com/
+
+
+To download the People.CSV:
+https://api.crunchbase.com/v/3/csv_expo	rt/csv_export.tar.gz?user_key=9d6e9ba4c3b51ae5cc6047793da128d4
+
+ssh -i "sc-key.pem" ec2-user@ec2-54-244-147-34.us-west-2.compute.amazonaws.com
+

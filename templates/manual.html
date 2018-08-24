@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+
+{% block body %}
+	<style type="text/css">
+		table { table-layout: fixed; }
+		td { width: 33%; }
+	</style>
+
+	<div>
+	{% if matches %}
+	<h2> Matches </h2>
+	Confidence level is represented as number of A's followed by number of B's (A.B)<br><br>
+		<table>
+		<tr>
+			<td>Confidence (A.B)</td>
+			<td>Twitter Handle</td>
+			<td>Following</td>
+		</tr>
+		{% for match in matches %}
+		<tr>
+			<td>{{ match.Confidence }}</td>
+			<td>{{ match.TwitterHandle }}</td>
+			<td>{{ match.Following }}</td>
+		</tr>
+		{% endfor %}
+		</table>
+	<br><br><br>
+	{% endif %}
+
+	</div>
+
+	<h3>Check Handles</h3>
+	If you don't check to send results to email, it will fetch the results in your browser, so please wait for it to finish.
+	<form action="/manual/process_manual" method="post">
+		<input type="checkbox" name="sendEmail">Send results to email?<br>
+		Please enter email address: <input type="text" name="email"><br><br>
+		Enter twitter handles to check, separated by commas, spaces, or carriage return: <br><textarea rows="20" cols="50" name="people"></textarea><br>
+	    <input type="submit" value="Submit" />
+	</form>
+{% endblock %}

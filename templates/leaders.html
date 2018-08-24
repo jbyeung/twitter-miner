@@ -1,0 +1,125 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+
+	<p>
+	<h3> Add Leaders </h3>
+	<i>- Enter twitter handles of leaders to add and set type. <br>
+	- Acccepts "@handle", "handle", or "http://www.twitter.com/handle"<br>
+	- A is high confidence, B is low confidence</i><br><br>
+	<form action="/leaders/add_leaders" method="post">
+	twitter handle: <input type="text" name="leader1">
+		<select name="leader1_type">
+	  <option value="A">A</option>
+	  <option value="B">B</option>
+	  	</select>
+	twitter handle: <input type="text" name="leader2">
+		<select name="leader2_type">
+	  <option value="A">A</option>
+	  <option value="B">B</option>
+	  	</select><br>
+	twitter handle: <input type="text" name="leader3">
+		<select name="leader3_type">
+	  <option value="A">A</option>
+	  <option value="B">B</option>
+	  	</select>
+	  	<br>
+	twitter handle: <input type="text" name="leader4">
+		<select name="leader4_type">
+	  <option value="A">A</option>
+	  <option value="B">B</option>
+	  	</select>
+	  	<br>
+	twitter handle: <input type="text" name="leader5">
+		<select name="leader5_type">
+	  <option value="A">A</option>
+	  <option value="B">B</option>
+	  	</select>
+	  	<br>
+	    <input type="submit" value="add leaders" />
+	</form>
+	</p>
+
+
+	<p>
+	<h3> Delete Leaders </h3>
+	<i>
+	- Enter twitter handles of leaders to remove. <br>
+	- Warning: this action cannot be undone!</i><br><br>
+	<form onsubmit="return confirm('Do you really want to delete these leaders?');" action="/leaders/delete_leaders" method="post">
+	twitter handle: <input type="text" name="leader1"><br>
+	twitter handle: <input type="text" name="leader2"><br>
+	twitter handle: <input type="text" name="leader3"><br>
+	twitter handle: <input type="text" name="leader4"><br>
+	twitter handle: <input type="text" name="leader5"><br>
+	    <input type="submit" value="delete leaders" />
+	</form>
+	</p>
+
+	<p>
+	<h3> Update Leader </h3>
+	<i>
+	- Enter twitter handle of a leader to update their list of twitter followers. <br>
+	</i>
+	<br><br>
+	<form action="/leaders/update_leader" method="post">
+		twitter handle: <input type="text" name="leader"><br>
+	    <input type="submit" value="update leader" />
+	</form>
+	</p>
+
+	<p>
+	<h3> Set Leader Type </h3>
+	<i>
+	- Enter twitter handle of a leader in the database to change the type <br>
+	</i><br><br>
+	<form action="/leaders/set_leader_type" method="post">
+		twitter handle: <input type="text" name="leader"><br>
+		Set Type (A or B): <input type="text" name="leader_type"><br>
+	    <input type="submit" value="set type" />
+	</form>
+	<br><br>
+	</p>
+
+	<div>
+		{% if leaders_list %}
+
+		<h2> Leaders in database: {{ num_leaders }} </h2>
+		    <table>
+		    <tr>
+		    <th>Number</th>
+		    <th>Twitter Handle</th>
+		    <th>Last Updated</th>
+		    <th>Followers</th>
+		    <th>Type</th>
+		  	</tr>
+		     <colgroup>
+		    <col span="2">
+		  	</colgroup>
+		    {% for leader in leaders_list %}
+		   	<tr>
+			   	<td>
+		    	{{ leader.0 }}
+		        </td>
+		   		<td>
+		    	{{ leader.1 }}
+		        </td>
+		        <td>
+		    	{{ leader.2 }}
+		        </td>
+		        <td>
+		    	{{ leader.3 }}
+		        </td>
+		        <td>
+		    	{{ leader.4 }}
+		        </td>
+		    <tr>
+		    {% endfor %}
+		    </table>
+		{% else %}
+		    <p>No leaders are available.</p>
+		{% endif %}
+
+	</div>
+{% endblock %}

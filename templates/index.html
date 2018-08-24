@@ -1,0 +1,43 @@
+<!doctype html>
+<title>Project Ripple</title>
+<div class=page>
+	
+    <a href="{{ url_for('index') }}"><h1>Project Ripple</h1></a>
+	
+    
+    <a href="{{ url_for('leaders') }}">Manage Leaders</a>
+    <br>
+    <a href="{{ url_for('crunchbase') }}">Crunchbase</a>
+    <br>
+    <a href="{{ url_for('manual') }}">Check Twitter Handles</a>
+
+    <br><br>
+    All actions get queued in the server after you submit (so you don't have to wait in browser) except the manual search without the email option.
+
+    <div>
+    {% if messages %}
+        <h3> Messages </h3>
+        {% for message in messages %}
+            {{ message }}
+            <br>
+        {% endfor %}
+    {% endif %}
+
+    </div>
+
+    <div>
+    {% if messages2 %}
+        <h3> Messages2 </h3>
+        {% for message in messages2 %}
+            {{ message }}
+            <br>
+        {% endfor %}
+    {% endif %}
+
+    </div>
+
+
+    <hr>
+    <br><br>
+   	{% block body %}{% endblock %}
+</div>
